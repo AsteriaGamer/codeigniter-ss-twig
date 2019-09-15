@@ -1,4 +1,6 @@
 <?php
+namespace App\Libraries;
+
 /**
  * Part of CodeIgniter Simple and Secure Twig
  *
@@ -7,7 +9,11 @@
  * @copyright  2015 Kenji Suzuki
  * @link       https://github.com/kenjis/codeigniter-ss-twig
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+
+use Twig_Environment;
+use Twig_Extension_Debug;
+use Twig_Loader_Filesystem;
+use Twig_SimpleFunction;
 
 // If you don't use Composer, uncomment below
 /*
@@ -86,7 +92,7 @@ class Twig
 		}
 		else
 		{
-			$this->paths = [VIEWPATH];
+			$this->paths = APPATH.'Views/';
 		}
 
 		// default Twig config
@@ -153,8 +159,7 @@ class Twig
 	 */
 	public function display($view, $params = [])
 	{
-		$CI =& get_instance();
-		$CI->output->set_output($this->render($view, $params));
+		echo $this->render($view, $params);
 	}
 
 	/**
